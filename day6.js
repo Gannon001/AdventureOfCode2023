@@ -65,9 +65,6 @@ function run (input) {
     console.log('Resultat : ', result)
 
   }
-
-
-
 }
 
 
