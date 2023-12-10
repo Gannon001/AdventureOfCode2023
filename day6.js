@@ -51,7 +51,7 @@ function run (input) {
   const B = T
   const C = -D
 
-  const delta = T*T - 4 * -1 * -D
+  const delta = T*T - 4 * A * C
   if (delta > 0) {
     const sqrtDelta = Math.sqrt(delta)
     const s1 = (-B + sqrtDelta) / (2 * A)
