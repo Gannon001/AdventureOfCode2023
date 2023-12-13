@@ -51,6 +51,7 @@ function compareArrays (a, b) {
     return true;
   }
 }
+
 function compareArraysDiff (a, b) {
   let nbError = 0
   for (let i = 0; i < a.length; i++) {
@@ -91,12 +92,15 @@ function getHorizontalSymmetry (arr) {
 
 function getSymmetry (arr) {
   let symHorizontal = getHorizontalSymmetry(arr)
+  let symVertial = null
 
-  const arr90 = Array(arr[0].length).fill([]).map((_, i) => {
-    return arr.map(a => a[i])
-  })
-
-  let symVertial = getHorizontalSymmetry(arr90)
+  // La symmetrie est horizontal
+  if (symHorizontal === null) {
+    const arr90 = Array(arr[0].length).fill([]).map((_, i) => {
+      return arr.map(a => a[i])
+    })
+    symVertial = getHorizontalSymmetry(arr90)
+  }
 
   return {
     symHorizontal,
@@ -152,22 +156,24 @@ function getSymmetryWithError (arr) {
 function run (input) {
   const motifs = parseInput(input.replaceAll('\r', ''))
 
+  // Part 1
   {
     let scoreSym = 0
     motifs.forEach(motif => {
       const {symHorizontal, symVertial} = getSymmetry(motif)
       scoreSym += symHorizontal * 100 + symVertial
     })
-    console.log(scoreSym)
+    console.log('Part 1 :', scoreSym)
   }
 
+  // Part 2
   {
     let scoreSym = 0
     motifs.forEach(motif => {
       const {symHorizontal, symVertial} = getSymmetryWithError(motif)
       scoreSym += symHorizontal * 100 + symVertial
     })
-    console.log('Total', scoreSym)
+    console.log('Part 2 :', scoreSym)
   }
 }
 
