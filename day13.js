@@ -171,6 +171,7 @@ function run (input) {
     let scoreSym = 0
     motifs.forEach(motif => {
       const {symHorizontal, symVertial} = getSymmetryWithError(motif)
+      console.log(symHorizontal, symVertial)
       scoreSym += symHorizontal * 100 + symVertial
     })
     console.log('Part 2 :', scoreSym)
@@ -182,5 +183,5 @@ function run (input) {
   const inputFileName = path.basename(process.argv[1]).replace('.js', '.txt')
   const pathInput = path.join('.', 'inputs', inputFileName)
   const input = await fs.readFile(pathInput, 'utf-8')
-  run(input)
+  run(inputExample)
 })()
